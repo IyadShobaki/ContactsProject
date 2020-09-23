@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="ContactsWpfUI.Views.ContactDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ContactsWpfUI.Views"
+             mc:Ignorable="d"
+             Height="450"
+             Width="300">
+
+    <Grid>
+        <StackPanel Margin="10">
+
+            <Label Content="First Name"
+                   FontSize="18" />
+            <TextBox x:Name="FirstName"
+                     Text="{Binding FirstName}"
+                     Margin="0 0 0 5" />
+            <Label Content="Last Name"
+                   FontSize="18" />
+            <TextBox x:Name="LastName"
+                     Text="{Binding LastName}"
+                     Margin="0 0 0 5" />
+            <Label Content="Email"
+                   FontSize="18" />
+            <TextBox x:Name="Email"
+                     Text="{Binding Email}"
+                     Margin="0 0 0 5" />
+            <Label Content="Phone Number"
+                   FontSize="18" />
+            <TextBox x:Name="PhoneNumber"
+                     Text="{Binding PhoneNumber}"
+                     Margin="0 0 0 25" />
+            <Button Content="Update Contact"
+                    x:Name="UpdateContact"
+                    Margin="0 0 0 5"
+                    Style="{StaticResource RoundButtonTemplate}" />
+            <Button Content="Delete Contact"
+                    x:Name="DeleteContact"
+                    Margin="0 0 0 5"
+                    Style="{StaticResource RoundButtonTemplate}" />
+            <Button Content="MainPage"
+                    x:Name="MainPage"
+                    Margin="0 0 0 5"
+                    Style="{StaticResource RoundButtonTemplate}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

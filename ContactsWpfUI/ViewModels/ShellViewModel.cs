@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace ContactsWpfUI.ViewModels
 {
     public class ShellViewModel : Conductor<object>,
-        IHandle<NewContactEvent>, IHandle<ContactsEvent>
+        IHandle<NewContactEvent>, IHandle<ContactsEvent>,
+        IHandle<UpdateRecordEvent>
     {
         private readonly IEventAggregator _events;
 
@@ -30,6 +31,11 @@ namespace ContactsWpfUI.ViewModels
         public async Task HandleAsync(ContactsEvent message, CancellationToken cancellationToken)
         {
             await ActivateItemAsync(IoC.Get<ContactsViewModel>());
+        }
+
+        public async Task HandleAsync(UpdateRecordEvent message, CancellationToken cancellationToken)
+        {
+            await ActivateItemAsync(IoC.Get<ContactDetailsViewModel>());
         }
     }
 }

@@ -16,13 +16,15 @@ namespace ContactsWpfUI.ViewModels
     {
         private readonly IEventAggregator _events;
         private readonly IContactEndPoint _contactEndPoint;
-       
+        private readonly ContactDetailsViewModel _contactDetailsViewModel;
 
         public ContactsViewModel(IEventAggregator events, 
-            IContactEndPoint contactEndPoint)
+            IContactEndPoint contactEndPoint,
+            ContactDetailsViewModel contactDetailsViewModel)
         {
             _events = events;
             _contactEndPoint = contactEndPoint;
+            _contactDetailsViewModel = contactDetailsViewModel;
         }
 
         protected override async void OnViewLoaded(object view)
@@ -33,7 +35,8 @@ namespace ContactsWpfUI.ViewModels
 
         private async Task LoadContacts()
         {
-            var contactList = await _contactEndPoint.GetAllContacts();
+            var contactList = (await _contactEndPoint.GetAllContacts()).OrderBy(x=>
+            x.LastName);
             Contacts = new List<ContactModel>(contactList);
             OriginalList = new List<ContactModel>(contactList);
         }
@@ -54,6 +57,39 @@ namespace ContactsWpfUI.ViewModels
                 NotifyOfPropertyChange(() => Contacts);
             }
         }
+
+        private ContactModel _selectedContact;
+
+        public ContactModel SelectedContact
+        {
+            get { return _selectedContact; }
+            set 
+            { 
+                _selectedContact = value;
+                NotifyOfPropertyChange(() => SelectedContact);
+                NotifyOfPropertyChange(() => CanUpdateContact);
+                //NotifyOfPropertyChange(() => CanDeleteContact);
+            }
+        }
+
+        public bool CanUpdateContact
+        {
+            get
+            {
+                if (SelectedContact != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public void UpdateContact()
+        {
+            _contactDetailsViewModel.ContactTest = SelectedContact;
+            _events.PublishOnUIThreadAsync(new UpdateRecordEvent());
+        }
+
 
         List<ContactModel> OriginalList;
         
@@ -77,6 +113,15 @@ namespace ContactsWpfUI.ViewModels
             }
         }
 
+        public void ByFirstName()
+        {
+            var filterByFirstName = from c in Contacts
+                                    //where c.FirstName.ToLower().Contains(Search.ToLower())
+                                    orderby c.FirstName
+                                    select c;
+            Contacts = filterByFirstName.ToList();
+            NotifyOfPropertyChange(() => Contacts);
 
+        }
     }
 }
