@@ -19,7 +19,7 @@
                 <Setter Property="FontSize"
                         Value="15" />
                 <Setter Property="Width"
-                        Value="130" />
+                        Value="Auto" />
                 <Setter Property="Height"
                         Value="40" />
                 <Setter Property="BorderBrush"
@@ -57,6 +57,8 @@
                 </Setter>
             </Style>
             <Style TargetType="{x:Type TextBox}">
+                <Setter Property="FontSize"
+                        Value="18" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate>

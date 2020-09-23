@@ -17,5 +17,13 @@ namespace ContactsManager.Library.DataAccess
         {
             _sql.SaveData("dbo.spContact_Insert", contactModel, "test");
         }
+
+        public List<ContactModel> GetContacts()
+        {
+            var output = _sql.LoadData<ContactModel, dynamic>("dbo.spContacts_GetAll",
+                new { }, "test");
+
+            return output;
+        }
     }
 }

@@ -24,5 +24,11 @@ namespace ContactsManager.Controllers
         {
             _contactData.InsertNewContact(contactModel);
         }
+
+        [HttpGet]
+        public List<ContactModel> Get()
+        {
+            return _contactData.GetContacts();
+        }
     }
 }

@@ -4,22 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactsWpfUI.Views"
-             mc:Ignorable="d" Height="300" Width="300" >
+             mc:Ignorable="d" Height="400" Width="300" >
     <Grid>
         <StackPanel Margin="10">
-            <TextBox x:Name="FirstName" 
-                     Margin="0 0 0 5"/>         
-            <TextBox x:Name="LastName" 
-                     Margin="0 0 0 5"/>
+            <Label Content="First Name"
+                   FontSize="18" />
+            <TextBox x:Name="FirstName"
+                     Margin="0 0 0 5" />
+            <Label Content="Last Name"
+                   FontSize="18" />
+            <TextBox x:Name="LastName"
+                     Margin="0 0 0 5" />
+            <Label Content="Email"
+                   FontSize="18"/>
             <TextBox x:Name="Email"
                      Margin="0 0 0 5" />
+            <Label Content="Phone Number"
+                   FontSize="18" />
             <TextBox x:Name="PhoneNumber"
-                     Margin="0 0 0 5" />
+                     Margin="0 0 0 25" />
             <Button Content="Save Contact"
-                    x:Name="SaveContact" 
+                    x:Name="SaveContact"
+                    Margin="0 0 0 5"
                     Style="{StaticResource RoundButtonTemplate}"/>
             <Button Content="MainPage"
                     x:Name="MainPage"
+                    Margin="0 0 0 5"
                     Style="{StaticResource RoundButtonTemplate}" />
         </StackPanel> 
     </Grid>

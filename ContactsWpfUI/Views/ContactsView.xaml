@@ -4,10 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactsWpfUI.Views"
-             mc:Ignorable="d" >
+             mc:Ignorable="d"
+             Height="400"
+             Width="300">
+    <Grid>
     <StackPanel>
+            <TextBlock Text="The List Of Contacts"
+                       TextAlignment="Center"
+                       FontSize="20"
+                       FontWeight="Bold" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="170"
+                         Margin="0 0 5 0"/>
+                <Label Content="Search By Last Name"
+                       FontWeight="Bold" />
+            </StackPanel>
+            <ListView x:Name="Contacts"
+                  Margin="0 0 0 10"
+                  Height="250">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding FirstName}" FontSize="20"
+                                   FontWeight="Bold"/>
+                            <TextBlock Text="{Binding LastName}"
+                                       Margin="10 0 0 0"
+                                       FontSize="20"
+                                       FontWeight="Bold" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding Email}"
+                                   Margin="10 0 0 0"
+                                   FontSize="15"
+                                   Foreground="DodgerBlue" />
+                        <TextBlock Text="{Binding PhoneNumber}"
+                                   Margin="10 0 0 0"
+                                   FontSize="15"
+                                   FontStyle="Italic"/>
+                    </StackPanel>    
+                 </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button Content="New Contacts"
                 x:Name="NewContact"
                 Style="{StaticResource RoundButtonTemplate}" />
     </StackPanel>
+    </Grid>
 </UserControl>

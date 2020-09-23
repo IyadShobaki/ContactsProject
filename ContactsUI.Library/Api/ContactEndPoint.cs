@@ -26,5 +26,21 @@ namespace ContactsUI.Library.Api
                 }
             }
         }
+
+        public async Task<List<ContactModel>> GetAllContacts()
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/Contact"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<ContactModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }
