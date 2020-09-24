@@ -21,29 +21,11 @@
                        FontWeight="Bold" />
             </StackPanel>
             <ListView x:Name="Contacts"
-                      Margin="0 0 0 10"
+                      Margin="10"
                       Height="250">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding FirstName}"
-                                           FontSize="20"
-                                           FontWeight="Bold" />
-                                <TextBlock Text="{Binding LastName}"
-                                           Margin="10 0 0 0"
-                                           FontSize="20"
-                                           FontWeight="Bold" />
-                            </StackPanel>
-                            <TextBlock Text="{Binding Email}"
-                                       Margin="10 0 0 0"
-                                       FontSize="15"
-                                       Foreground="DodgerBlue" />
-                            <TextBlock Text="{Binding PhoneNumber}"
-                                       Margin="10 0 0 0"
-                                       FontSize="15"
-                                       FontStyle="Italic" />
-                        </StackPanel>
+                        <local:ContactView Contact="{Binding}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
