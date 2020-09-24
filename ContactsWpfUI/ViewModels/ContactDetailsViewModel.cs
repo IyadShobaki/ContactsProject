@@ -1,10 +1,12 @@
 ﻿using Caliburn.Micro;
+using ContactsUI.Library.Api;
 using ContactsUI.Library.Models;
 using ContactsWpfUI.EventModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace ContactsWpfUI.ViewModels
@@ -12,9 +14,13 @@ namespace ContactsWpfUI.ViewModels
     public class ContactDetailsViewModel : Screen
     {
         private readonly IEventAggregator _events;
-        public ContactDetailsViewModel(IEventAggregator events)
+        private readonly IContactEndPoint _contactEndPoint;
+
+        public ContactDetailsViewModel(IEventAggregator events,
+            IContactEndPoint contactEndPoint)
         {
             _events = events;
+            _contactEndPoint = contactEndPoint;
         }
 
         private static ContactModel ContactModelTest;
@@ -120,9 +126,33 @@ namespace ContactsWpfUI.ViewModels
         }
 
 
-        public void UpdateContact()
+        public async Task UpdateContact()
         {
-            string test = FirstName;
+            ContactModel contactModel = new ContactModel();
+            contactModel.Id = Id;
+            contactModel.FirstName = FirstName;
+            contactModel.LastName = LastName;
+            contactModel.Email = Email;
+            contactModel.PhoneNumber = PhoneNumber;
+
+            await _contactEndPoint.UpdateContact(contactModel);
+
+            await _events.PublishOnUIThreadAsync(new ContactsEvent());
+
+        }
+        public async Task DeleteContact()
+        {
+            try
+            {
+                await _contactEndPoint.DeleteContact(Id);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+           
+            await _events.PublishOnUIThreadAsync(new ContactsEvent());
         }
         public void MainPage()
         {

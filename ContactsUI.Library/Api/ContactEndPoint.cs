@@ -42,5 +42,26 @@ namespace ContactsUI.Library.Api
                 }
             }
         }
+        public async Task UpdateContact(ContactModel contactModel)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/Contact/Update", contactModel))
+            {
+                if (response.IsSuccessStatusCode == false)
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task DeleteContact(int id)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/Contact/Delete", id))
+            {
+                if (response.IsSuccessStatusCode == false)
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

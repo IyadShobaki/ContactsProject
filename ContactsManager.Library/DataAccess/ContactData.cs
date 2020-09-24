@@ -25,5 +25,15 @@ namespace ContactsManager.Library.DataAccess
 
             return output;
         }
+
+        public void UpdateContact(ContactModel contactModel)
+        {
+            _sql.SaveData("dbo.spContact_Update", contactModel, "test");
+        }
+
+        public void DeleteContact(int id)
+        {
+            _sql.SaveData("dbo.spContact_Delete", new { Id = id }, "test");
+        }
     }
 }

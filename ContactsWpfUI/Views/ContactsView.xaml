@@ -50,14 +50,17 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="New Contacts"
                         x:Name="NewContact"
+                        Width="110"
                         Style="{StaticResource RoundButtonTemplate}" />
-                <Button Content="By First Name"
+                <Button Content="Order By First Name"
                         x:Name="ByFirstName"
                         Margin="5 0 0 0"
+                        Width="160"
                         Style="{StaticResource RoundButtonTemplate}" />
-                <Button Content="Update Contact"
-                        x:Name="UpdateContact"
+                <Button Content="Edit Contact"
+                        x:Name="EditContact"
                         Margin="5 0 0 0"
+                        Width="120"
                         Style="{StaticResource RoundButtonTemplate}" />
 
             </StackPanel>

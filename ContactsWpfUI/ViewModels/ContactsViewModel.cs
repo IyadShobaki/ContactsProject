@@ -67,12 +67,11 @@ namespace ContactsWpfUI.ViewModels
             { 
                 _selectedContact = value;
                 NotifyOfPropertyChange(() => SelectedContact);
-                NotifyOfPropertyChange(() => CanUpdateContact);
-                //NotifyOfPropertyChange(() => CanDeleteContact);
+                NotifyOfPropertyChange(() => CanEditContact);
             }
         }
 
-        public bool CanUpdateContact
+        public bool CanEditContact
         {
             get
             {
@@ -84,7 +83,7 @@ namespace ContactsWpfUI.ViewModels
             }
         }
 
-        public void UpdateContact()
+        public void EditContact()
         {
             _contactDetailsViewModel.ContactTest = SelectedContact;
             _events.PublishOnUIThreadAsync(new UpdateRecordEvent());

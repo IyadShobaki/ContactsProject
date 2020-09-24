@@ -30,5 +30,19 @@ namespace ContactsManager.Controllers
         {
             return _contactData.GetContacts();
         }
+        [HttpPost]
+        [Route("Update")]
+        public void Put(ContactModel contactModel)
+        {
+            _contactData.UpdateContact(contactModel);
+        }
+        [HttpPost]
+        [Route("Delete")]
+        public void Delete(object id)
+        {
+            string _id = id.ToString();
+            int Id = Convert.ToInt32(_id);
+            _contactData.DeleteContact(Id);
+        }
     }
 }
